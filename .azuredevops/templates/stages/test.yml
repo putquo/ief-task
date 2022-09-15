@@ -1,0 +1,33 @@
+parameters:
+- name: condition
+  type: string
+  default: succeeded()
+- name: dependsOn
+  type: object
+  default: []
+
+stages:
+- stage: Test
+  condition: ${{ parameters.condition }}
+  dependsOn: ${{ parameters.dependsOn }}
+  displayName: Test
+  jobs:
+  - job:
+    displayName: Run
+    steps:
+    - task: Npm@1
+      displayName: npm Install
+      inputs:
+        command: install
+
+    - task: Npm@1
+      displayName: npm Test
+      inputs:
+        command: custom
+        customCommand: run test:ci
+
+    - task: PublishTestResults@2
+      displayName: Publish Test Results
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFiles: junit.xml

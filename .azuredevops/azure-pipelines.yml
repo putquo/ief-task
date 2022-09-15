@@ -1,0 +1,17 @@
+trigger:
+  branches:
+    include:
+    - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- template: templates/variables/common.yml@self
+
+stages:
+- template: templates/stages/test.yml@self
+- ${{ if eq(variables['Release'], 'true') }}:
+  - template: templates/stages/publish.yml@self
+    parameters:
+      dependsOn: Test

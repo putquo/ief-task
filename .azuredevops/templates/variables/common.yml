@@ -1,0 +1,13 @@
+variables:
+- name: Artifact.Name
+  value: drop
+- name: Extension.Id
+  value: ief-task
+- name: Extension.Name
+  value: Identity Experience Framework Task
+- name: Publisher.Id
+  value: prestonvtonder
+- name: Release
+  value: ${{ eq(variables['Build.SourceBranch'], 'refs/heads/main') }}
+- name: ServiceConnection.VisualStudioMarketplace
+  value: vsm-sandbox-devops-tasks

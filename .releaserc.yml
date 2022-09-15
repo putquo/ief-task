@@ -1,0 +1,22 @@
+branches:
+- name: main
+  channel: release
+plugins:
+- "@semantic-release/commit-analyzer"
+- "@semantic-release/release-notes-generator"
+- - "@semantic-release/exec"
+  - prepareCmd: "./.azuredevops/scripts/prepare.sh ${nextRelease.version} src/task.json"
+- - "@google/semantic-release-replace-plugin"
+  - replacements:
+    - files:
+      - vss-extension.json
+      from: "\"version\": \".*\""
+      to: "\"version\": \"${nextRelease.version}\""
+      countMatches: true
+- - "@semantic-release/changelog"
+- - "@semantic-release/git"
+  - assets:
+    - CHANGELOG.md
+    - vss-extension.json
+    - src/task.json
+preset: angular

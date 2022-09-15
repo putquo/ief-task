@@ -1,0 +1,107 @@
+parameters:
+- name: artifactName
+  type: string
+  default: $(Artifact.Name)
+- name: condition
+  type: string
+  default: succeeded()
+- name: dependsOn
+  type: object
+  default: []
+- name: extensionId
+  type: string
+  default: $(Extension.Id)
+- name: extensionName
+  type: string
+  default: $(Extension.Name)
+- name: publisherId
+  type: string
+  default: $(Publisher.Id)
+- name: vsmServiceConnection
+  type: string
+  default: $(ServiceConnection.VisualStudioMarketplace)
+
+stages:
+- stage: Publish
+  displayName: Publish
+  condition: ${{ parameters.condition }}
+  dependsOn: ${{ parameters.dependsOn }}
+  jobs:
+  - job:
+    displayName: Run
+    steps:
+    - checkout: self
+      persistCredentials: true
+
+    - script: |
+        npm -g i --location=global @google/semantic-release-replace-plugin @semantic-release/exec @semantic-release/changelog @semantic-release/git semantic-release && semantic-release
+      displayName: Create Release
+      env:
+        GH_TOKEN: $(System.AccessToken)
+    
+    - script: |
+        git fetch
+        git checkout main
+        git branch --set-upstream-to=origin/main main
+        git pull
+      displayName: Fetch Latest
+
+    - task: TfxInstaller@3
+      displayName: Install TFX
+      inputs:
+        version: "v0.8.x"
+
+    - task: Npm@1
+      displayName: npm Install
+      inputs:
+        command: install
+
+    - task: Npm@1
+      displayName: Compile TypeScript
+      inputs:
+        command: custom
+        customCommand: run build
+
+    - task: Npm@1
+      displayName: npm Install --only=prod
+      inputs:
+        command: custom
+        customCommand: install --only=prod
+        workingDir: dist
+
+    - task: PackageAzureDevOpsExtension@3
+      displayName: Package Extension
+      inputs:
+        publisherId: ${{ parameters.publisherId }}
+        extensionId: ${{ parameters.extensionId }}
+        extensionName: ${{ parameters.extensionName }}
+        updateTasksVersion: false
+        extensionVisibility: private
+        extensionPricing: free
+
+    - task: CopyFiles@2
+      displayName: Copy to Artifact Staging Directory
+      inputs:
+        Contents: "**/*.vsix"
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Artifact
+      inputs:
+        PathtoPublish: $(Build.ArtifactStagingDirectory)
+        ArtifactName: ${{ parameters.artifactName }}
+        publishLocation: Container
+
+    - task: PublishAzureDevOpsExtension@3
+      displayName: Publish Extension
+      inputs:
+        connectTo: VsTeam
+        connectedServiceName: ${{ parameters.vsmServiceConnection }}
+        fileType: vsix
+        vsixFile: "**/*.vsix"
+        publisherId: ${{ parameters.publisherId }}
+        extensionId: ${{ parameters.extensionId }}
+        extensionName: ${{ parameters.extensionName }}
+        updateTasksVersion: false
+        extensionVisibility: private
+        extensionPricing: free
