@@ -2,7 +2,6 @@ import type { ClientCredentials, Key, Pkcs12Cert, Secret } from '../models/types
 import task = require('azure-pipelines-task-lib/task');
 import { PolicyAction, Command, KeysetAction, KeyType, KeyUsage, TaskInput } from '../models/enums';
 import { env, exit } from 'process';
-import { getLogger } from './log';
 import { resolve } from 'path';
 import { addMonthsToNow, toUnixTimestamp } from './date';
 
@@ -130,13 +129,4 @@ function validateEnumInput<E extends EnumObject>(enumbObject: E, inputType: stri
       `Invalid ${inputType} '${inputValue}'. Valid inputs include: ${getEnumValues(enumbObject)}`;
     panic(message)
   }
-}
-
-export function displayTaskHeader(): void {
-  const log = getLogger();
-  log.info(`
-==============================================================================
-                          Trust Framework Task
-==============================================================================
-  `);
 }
