@@ -1,0 +1,8 @@
+node_modules/
+test.sh
+!.vscode
+!.eslintrc.js
+!.prettierrc.js
+!jest.config.js
+junit.xml
+dist

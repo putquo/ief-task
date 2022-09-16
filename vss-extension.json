@@ -1,0 +1,61 @@
+{
+    "manifestVersion": 1,
+    "id": "ief-task",
+    "name": "Identity Experience Framework Task",
+    "version": "0.0.0",
+    "publisher": "Preston van Tonder",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "description": "A task for managing Azure Active Directory B2C Identity Experience Framework.",
+    "content": {
+        "details": {
+            "path": "README.md"
+        }
+    },
+    "links": {
+        "getstarted": {
+            "uri": "https://github.com/prestonvtonder/ief-task"
+        }
+    },
+    "repository": {
+        "type": "git",
+            "uri": "https://github.com/prestonvtonder/ief-task"
+    },
+    "badges": [
+        {
+            "href": "https://dev.azure.com/investec/investec-cloud-experience/_build/latest?definitionId=4053&branchName=main",
+            "uri": "https://dev.azure.com/investec/investec-cloud-experience/_apis/build/status/ice-devops-tasks/ice-devops-tasks-ice-crusher?branchName=main",
+            "description": "Azure Pipelines build"
+        }
+    ],
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "docs/images/icon.png"
+    },
+    "files": [
+        {
+            "path": "dist"
+        },
+        {
+            "path": "docs/images",
+            "addressable": true
+        }
+    ],
+    "contributions": [
+        {
+            "id": "ief-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "dist"
+            }
+        }
+    ]
+}

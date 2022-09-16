@@ -1,0 +1,63 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "26f6a8d0-0dc3-4c25-a367-7b91de579a02",
+    "name": "IdentityExperienceFramework",
+    "friendlyName": "Identity Experience Framework Task",
+    "description": "A task for managing Azure Active Directory B2C Identity Experience Framework.",
+    "helpMarkDown": "https://github.com/prestonvtonder/ief-task",
+    "category": "Utility",
+    "author": "Preston van Tonder",
+    "version": {
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Echo $(samplestring)",
+    "inputs": [
+    {
+        "name": "ConnectedServiceName",
+        "aliases": [
+            "serviceConnection"
+        ],
+        "defaultValue": "",
+        "type": "connectedService:Generic",
+        "label": "Generic service connection",
+        "required": true,
+        "helpMarkDown": "Service connection for the Microsoft Graph API"
+    },
+    {
+        "name": "defaultBranch",
+        "type": "string",
+        "label": "The default branch used in your repository for which resources should not be removed",
+        "defaultValue": "main",
+        "required": false,
+        "helpMarkDown": "Default repository branch"
+    },
+    {
+        "name": "project",
+        "type": "string",
+        "label": "The name of the project where the repository is located",
+        "required": true,
+        "helpMarkDown": "Azure DevOps project name"
+    },
+    {
+        "name": "repository",
+        "type": "string",
+        "label": "The name of the repository from which resource are being deployed",
+        "required": true,
+        "helpMarkDown": "Repository name"
+    },
+    {
+        "name": "resourceGroup",
+        "type": "string",
+        "label": "The name of the resource group where the resources are deployed",
+        "required": true,
+        "helpMarkDown": "Resource group name"
+    }
+],
+    "execution": {
+        "Node10": {
+            "target": "index.js"
+        }
+    }
+}
