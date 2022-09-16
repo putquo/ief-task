@@ -1,3 +1,10 @@
+## [0.1.1](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/compare/v0.1.0...v0.1.1) (2022-09-16)
+
+
+### Bug Fixes
+
+* update service connection input name ([4fc8a17](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/commit/4fc8a1734b157846b37a0e9780c4f95222ea3574))
+
 # [0.1.0](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/compare/v0.0.0...v0.1.0) (2022-09-16)
 
 
