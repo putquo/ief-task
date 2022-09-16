@@ -1,3 +1,10 @@
+## [0.1.2](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/compare/v0.1.1...v0.1.2) (2022-09-16)
+
+
+### Bug Fixes
+
+* remove task header logging ([be029f1](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/commit/be029f186b89ff1b2aa44a8b06de150a1889f22c))
+
 ## [0.1.1](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/compare/v0.1.0...v0.1.1) (2022-09-16)
 
 
