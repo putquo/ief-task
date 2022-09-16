@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "ief-task",
     "name": "Identity Experience Framework Task",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "publisher": "Preston van Tonder",
     "targets": [
         {

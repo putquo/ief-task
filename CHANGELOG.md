@@ -1,3 +1,10 @@
+## [0.1.3](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/compare/v0.1.2...v0.1.3) (2022-09-16)
+
+
+### Bug Fixes
+
+* improve logging ([a6570db](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/commit/a6570db0a19b8b4b925881bd0fe351a7eda08fd0))
+
 ## [0.1.2](https://dev.azure.com/prestonvtonder/sandbox/_git/ief-task/compare/v0.1.1...v0.1.2) (2022-09-16)
 
 
