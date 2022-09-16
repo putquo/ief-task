@@ -1,5 +1,7 @@
 node_modules/
-test.sh
+policies/
+task.sh
+.taskkey
 !.vscode
 !.eslintrc.js
 !.prettierrc.js
