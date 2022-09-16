@@ -52,3 +52,8 @@ export enum FileExtensions {
 export enum MimeTypes {
   ApplicationXml = 'application/xml',
 }
+
+export enum EnvironmentVariables {
+  ClientId = 'SERVICECONNECTION_CLIENTID',
+  ClientSecret = 'SERVICECONNECTION_CLIENTSECRET',
+}

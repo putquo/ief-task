@@ -64,6 +64,11 @@ export interface Key {
     use: KeyUsage;
 }
 
+export interface GenericServiceConnection {
+    username: string;
+    password: string;
+}
+
 export interface Logger {
     debug(message?: any, ...parameters: any[]): void;
     error(message?: any, ...parameters: any[]): void;

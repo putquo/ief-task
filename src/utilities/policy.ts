@@ -1,5 +1,4 @@
 import type { Client } from '@microsoft/microsoft-graph-client';
-import task = require('azure-pipelines-task-lib/task');
 import { parseStringPromise } from 'xml2js';
 import { FileExtensions, MimeTypes } from '../models/enums';
 import type { Policy } from '../models/types';
@@ -21,11 +20,11 @@ async function getPolicyDetailsAsync(path: string): Promise<Policy> {
     const basePolicy: any | undefined = data.TrustFrameworkPolicy.BasePolicy;
     const parentId: string | undefined = basePolicy ? basePolicy[0].PolicyId[0] : undefined;
     return { children: [], content, id,  parentId, path, };
-  }
-  catch {
-    const errorMessage = `Error encountered when reading '${path}'`;
-    task.setResult(task.TaskResult.Failed, errorMessage, /* done */ true);
-    throw new Error(errorMessage);
+  } catch (error: any) {
+    log.debug(error.message);
+    const message = `An error occurred when reading '${path}'`;
+    panic(message);
+    throw new Error(message)
   }
 }
 
@@ -84,7 +83,8 @@ export async function deletePoliciesAsync(graphClient: Client, policies: Policy[
     await Promise.all(promises);
     log.info('Successfully deleted policies');
   } catch (error: any) {
-    panic(error.message);
+    log.debug(error.message);
+    panic('An error occurred when attempting to delete policies');
   }
 }
 
@@ -107,6 +107,7 @@ export async function uploadPoliciesAsync(graphClient: Client, batches: Policy[]
     }
     log.info('Successfully uploaded policies');
   } catch (error: any) {
-    panic(error.message);
+    log.debug(error.message);
+    panic('An error occurred when attempting to upload policies');
   }
 }
