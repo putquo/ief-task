@@ -12,7 +12,7 @@ export enum TaskInput {
   PfxPassword = 'pfxPassword',
   Policies = 'policies',
   Secret = 'secret',
-  ServiceConnection = 'serviceConnection',
+  ServiceConnection = 'ConnectedServiceName',
   TenantId = 'tenantId'
 }
 
