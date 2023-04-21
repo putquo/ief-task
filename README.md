@@ -10,6 +10,9 @@
   <a href="https://dev.azure.com/investec/sandbox/_build/latest?definitionId=3659&branchName=main">
     <img src="https://dev.azure.com/prestonvtonder/sandbox/_apis/build/status/ief-task?branchName=main">
   </a>
+  <a href="#badge">
+    <img alt="semantic-release: angular" src="https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release">
+  </a>
 </div>
 
 ## Overview
